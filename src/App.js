@@ -29,7 +29,8 @@ class App extends Component {
         { name: newName, age: 20 },
         { name: 'Manu', age: 29 },
         { name: 'Stephanie', age: 27 }
-      ]
+      ],
+      showPersons: false
     });
 
     // otherState: personState.otherState
@@ -43,6 +44,12 @@ class App extends Component {
         { name: event.target.value, age: 29 },
         { name: 'Stephanie', age: 27 }
       ]
+    });
+  };
+
+  togglePersonsHandler = () => {
+    this.setState({
+      showPersons: !this.state.showPersons
     });
   };
 
@@ -66,29 +73,37 @@ class App extends Component {
         >
           Switch Name
         </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          // name={personState.persons[0].name}
-          // age={personState.persons[0].age}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          // name={personState.persons[1].name}
-          // age={personState.persons[1].age}
-          // click={switchNameHandler.bind(this, 'Max!')}
-          click={this.switchNameHandler.bind(this, 'Max!!')}
-          changed={this.nameChangedHandler}
-        >
-          My Hobbies: Racing
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-          // name={personState.persons[2].name}
-          // age={personState.persons[2].age}
-        />
+        <button style={style} onClick={this.togglePersonsHandler}>
+          Toggle Person
+        </button>
+
+        {this.state.showPersons ? (
+          <div>
+            <Person
+              name={this.state.persons[0].name}
+              age={this.state.persons[0].age}
+              // name={personState.persons[0].name}
+              // age={personState.persons[0].age}
+            />
+            <Person
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              // name={personState.persons[1].name}
+              // age={personState.persons[1].age}
+              // click={switchNameHandler.bind(this, 'Max!')}
+              click={this.switchNameHandler.bind(this, 'Max!!')}
+              changed={this.nameChangedHandler}
+            >
+              My Hobbies: Racing
+            </Person>
+            <Person
+              name={this.state.persons[2].name}
+              age={this.state.persons[2].age}
+              // name={personState.persons[2].name}
+              // age={personState.persons[2].age}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }
