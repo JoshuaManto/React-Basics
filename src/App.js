@@ -62,6 +62,38 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+            // name={personState.persons[0].name}
+            // age={personState.persons[0].age}
+          />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            // name={personState.persons[1].name}
+            // age={personState.persons[1].age}
+            // click={switchNameHandler.bind(this, 'Max!')}
+            click={this.switchNameHandler.bind(this, 'Max!!')}
+            changed={this.nameChangedHandler}
+          >
+            My Hobbies: Racing
+          </Person>
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+            // name={personState.persons[2].name}
+            // age={personState.persons[2].age}
+          />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi React App</h1>
@@ -77,33 +109,7 @@ class App extends Component {
           Toggle Person
         </button>
 
-        {this.state.showPersons ? (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-              // name={personState.persons[0].name}
-              // age={personState.persons[0].age}
-            />
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              // name={personState.persons[1].name}
-              // age={personState.persons[1].age}
-              // click={switchNameHandler.bind(this, 'Max!')}
-              click={this.switchNameHandler.bind(this, 'Max!!')}
-              changed={this.nameChangedHandler}
-            >
-              My Hobbies: Racing
-            </Person>
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-              // name={personState.persons[2].name}
-              // age={personState.persons[2].age}
-            />
-          </div>
-        ) : null}
+        {persons}
       </div>
     );
   }
