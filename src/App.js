@@ -19,22 +19,31 @@ class App extends Component {
   // console.log(personState, otherState);
 
   // const switchNameHandler = newName => {
-  switchNameHandler = newName => {
-    // DONT DO THIS
-    // this.state.persons[0].name = 'Maximilian';
+  // switchNameHandler = newName => {
+  //   // DONT DO THIS
+  //   // this.state.persons[0].name = 'Maximilian';
 
-    // setPersonState({
-    this.setState({
-      persons: [
-        { name: newName, age: 20 },
-        { name: 'Manu', age: 29 },
-        { name: 'Stephanie', age: 27 }
-      ],
-      showPersons: false
-    });
+  //   // setPersonState({
+  //   this.setState({
+  //     persons: [
+  //       { name: newName, age: 20 },
+  //       { name: 'Manu', age: 29 },
+  //       { name: 'Stephanie', age: 27 }
+  //     ],
+  //     showPersons: false
+  //   });
 
-    // otherState: personState.otherState
-    // });
+  //   // otherState: personState.otherState
+  //   // });
+  // };
+
+  deleteNameHandler = index => {
+    // const persons = this.state.persons.slice();
+    //or
+    const persons = [...this.state.persons];
+    persons.splice(index, 1);
+
+    this.setState({ persons: persons });
   };
 
   nameChangedHandler = event => {
@@ -67,7 +76,19 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                click={() => {
+                  this.deleteNameHandler(index);
+                }}
+                name={person.name}
+                age={person.age}
+              ></Person>
+            );
+          })}
+
+          {/* <Person
             name={this.state.persons[0].name}
             age={this.state.persons[0].age}
             // name={personState.persons[0].name}
@@ -89,7 +110,7 @@ class App extends Component {
             age={this.state.persons[2].age}
             // name={personState.persons[2].name}
             // age={personState.persons[2].age}
-          />
+          /> */}
         </div>
       );
     }
